@@ -1,0 +1,30 @@
+{
+  "name": "bunyan-cassandra",
+  "version": "0.0.0",
+  "description": "Cassandra bunyan stream",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ivpusic/bunyan-cassandra.git"
+  },
+  "keywords": [
+    "logging",
+    "bunyan",
+    "cassandra"
+  ],
+  "author": "Ivan Pusic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivpusic/bunyan-cassandra/issues"
+  },
+  "dependencies": {
+    "node-cassandra-cql": "~0.4.4",
+    "object-path": "~0.6.0"
+  }
+}
