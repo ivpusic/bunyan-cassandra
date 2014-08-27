@@ -55,7 +55,12 @@ var logger = bunyan.createLogger({
       username: 'myuser',
       password: 'mypass',
       query: 'INSERT INTO log (id, message, ip, date, user, line, file, func) VALUES(uuid(), ?, ?, ?, ?, ?, ?, ?)',
-      args: ['msg', 'ctx.ip', 'time', 'ctx.session.user.id', 'src.line', 'src.file', 'src.func']
+      args: ['msg', 'ctx.ip', 'time', 'ctx.session.user.id', 'src.line', 'src.file', 'src.func'],
+      callback: function (err, res) {
+        // this callback is optional
+        // here you can do something with query results
+        // or catch possible Cassandra errors
+      }
     })
   }]
 });
@@ -134,3 +139,9 @@ args: ['msg', 'ctx.ip', 'ctx.session.id', 'level']
 ```
 
 **default** ``[]``
+
+#### callback
+After query is executed ``callback`` function will be called (if is defined).
+You can catch possible Cassandra errors here, or see result of operation.
+
+**default** ``undefined``
