@@ -9,6 +9,35 @@ npm install bunyan-cassandra
 ```
 
 ## Example
+
+Basic example:
+
+```Javascript
+var CassandraStream = require('bunyan-cassandra');
+
+var logger = bunyan.createLogger({
+  src: true,
+  name: 'name',
+  streams: [{
+    type: 'raw',
+    level: 'debug',
+    stream: new CassandraStream({
+      hosts: ['localhost'],
+      keyspace: 'mykeyspace',
+      username: 'myuser',
+      password: 'mypass',
+      query: 'INSERT INTO log (id, message) VALUES(uuid(), ?)',
+      args: ['msg']
+    })
+  }]
+});
+
+// this mesage will be saved to cassandra
+logger.debug('some log message');
+```
+
+Advanced example:
+
 ```Javascript
 var CassandraStream = require('bunyan-cassandra');
 
@@ -32,7 +61,6 @@ var logger = bunyan.createLogger({
   }]
 });
 
-// then just do normal bunyan logging
 // ctx can be express request object for example
 // it is completely up to you, you just need to configure ``query`` and ``args`` option
 // to support provided object
@@ -46,31 +74,6 @@ logger.debug({
     }
   }
 },'this is some log message');
-```
-
-If you want log normal messages, your config could be something like this:
-```Javascript
-var CassandraStream = require('bunyan-cassandra');
-
-var logger = bunyan.createLogger({
-  src: true,
-  name: 'name',
-  streams: [{
-    type: 'raw',
-    level: 'debug',
-    stream: new CassandraStream({
-      hosts: ['localhost'],
-      keyspace: 'mykeyspace',
-      username: 'myuser',
-      password: 'mypass',
-      query: 'INSERT INTO log (id, message) VALUES(uuid(), ?)',
-      args: ['msg']
-    })
-  }]
-});
-
-// this mesage will be saved to cassandra
-logger.debug('some log message');
 ```
 
 ## Configuration
