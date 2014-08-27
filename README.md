@@ -83,28 +83,28 @@ You can pass following options
 #### hosts
 Array with cassandra hosts
 
-**default** ['localhost']
+**default** ``['localhost']``
 
 #### keyspace
 Name of keyspace to use
 
-**default** 'logs'
+**default** ``'logs'``
 
 #### username
 Cassandra username to use
 
-**default** 'cassandra'
+**default** ``'cassandra'``
 
 #### username
 Cassandra password to use
 
-**default** 'cassandra'
+**default** ``'cassandra'``
 
 #### query
 Query for inserting data to Cassandra. 
 This will be executed for each log.
 
-**default** 'INSERT INTO logs (id) VALUES (uuid())'
+**default** ``'INSERT INTO logs (id) VALUES (uuid())'``
 
 #### args
 Array of object paths. When new log will be added to Cassandra, module will look
@@ -134,4 +134,4 @@ you can populate ``?`` with values if value of your ``args`` option is something
 args: ['msg', 'ctx.ip', 'ctx.session.id', 'level']
 ```
 
-**default** []
+**default** ``[]``
