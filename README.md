@@ -19,7 +19,6 @@ var logger = bunyan.createLogger({
   src: true,
   name: 'name',
   streams: [{
-    type: 'raw',
     level: 'debug',
     stream: new CassandraStream({
       hosts: ['localhost'],
