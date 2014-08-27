@@ -57,7 +57,9 @@ var logger = bunyan.createLogger({
       query: 'INSERT INTO log (id, message, ip, date, user, line, file, func) VALUES(uuid(), ?, ?, ?, ?, ?, ?, ?)',
       args: ['msg', 'ctx.ip', 'time', 'ctx.session.user.id', 'src.line', 'src.file', 'src.func'],
       callback: function (err, res) {
-        // do something with query results
+        // this callback is optional
+        // here you can do something with query results
+        // or catch possible Cassandra errors
       }
     })
   }]
