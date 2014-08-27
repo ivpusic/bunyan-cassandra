@@ -48,6 +48,31 @@ logger.debug({
 },'this is some log message');
 ```
 
+If you want log normal messages, your config could be something like this:
+```Javascript
+var CassandraStream = require('bunyan-cassandra');
+
+var logger = bunyan.createLogger({
+  src: true,
+  name: 'name',
+  streams: [{
+    type: 'raw',
+    level: 'debug',
+    stream: new CassandraStream({
+      hosts: ['localhost'],
+      keyspace: 'mykeyspace',
+      username: 'myuser',
+      password: 'mypass',
+      query: 'INSERT INTO log (id, message) VALUES(uuid(), ?)',
+      args: ['msg']
+    })
+  }]
+});
+
+// this mesage will be saved to cassandra
+logger.debug('some log message');
+```
+
 ## Configuration
 
 You can pass following options
