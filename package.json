@@ -1,6 +1,6 @@
 {
   "name": "bunyan-cassandra",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Cassandra bunyan stream",
   "main": "index.js",
   "directories": {
