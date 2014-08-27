@@ -31,9 +31,24 @@ var logger = bunyan.createLogger({
     })
   }]
 });
+
+// then just do normal bunyan logging
+// ctx can be express request object for example
+// it is completely up to you, you just need to configure ``query`` and ``args`` option
+// to support provided object
+logger.debug({
+  ctx: {
+    ip: '127.0.0.1',
+    session: {
+      user: {
+        id: 1
+      }
+    }
+  }
+},'this is some log message');
 ```
 
-### Configuration
+## Configuration
 
 You can pass following options
 
@@ -84,7 +99,7 @@ For example if your bunyan log entry looks like this:
 
 Then if you have CQL query like this:
 ```
-INSERT INTO logs (id, msg, ip, sessionid, level) VALUES (uuid(), ?, ?, ?, ?)
+query: 'INSERT INTO logs (id, msg, ip, sessionid, level) VALUES (uuid(), ?, ?, ?, ?)'
 ```
 you can populate ``?`` with values if value of your ``args`` option is something like this:
 ```
