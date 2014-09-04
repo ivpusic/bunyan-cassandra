@@ -60,6 +60,9 @@ var logger = bunyan.createLogger({
         // this callback is optional
         // here you can do something with query results
         // or catch possible Cassandra errors
+      },
+      transform: function (log) {
+        // add/remove/edit log object
       }
     })
   }]
@@ -145,3 +148,13 @@ After query is executed ``callback`` function will be called (if is defined).
 You can catch possible Cassandra errors here, or see result of operation.
 
 **default** ``undefined``
+
+#### transform
+Each time when new log is received, log will be passed as argument to ``transform`` function, so you will have opportunity to modify raw log data, for example add or remove some fields from log.
+```
+transform: function (row) {
+  // let we say we want date with specific format
+  row.date = moment(row.time).format('YYYY-MM-DD');
+  return row;
+}
+```
